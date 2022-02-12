@@ -6,6 +6,8 @@ authors = ["Noortheen Raja <jnoortheen@gmail.com>"]
 packages = [
     { include = "user_xsh" },
 ]
+license = "GPL v3"
+readme = "readme.md"
 
 [tool.poetry.dependencies]
 python = ">=3.9,<4.0"
