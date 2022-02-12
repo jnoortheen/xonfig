@@ -15,14 +15,14 @@ python = ">=3.9,<4.0"
 xonsh = { path = "../xsh", develop = true }
 
 # our xontribs
-xontrib-avox-poetry = { path = "../xontribs/avox-poetry", develop = true }
-xontrib-hist-navigator = { path = "../xontribs/hist-navigator", develop = true }
-xontrib-cmd-durations = { path = "../xontribs/cmd-done", develop = true }
-xontrib-commands = { path = "../xontribs/commands", develop = true }
-xontrib-powerline3 = { path = "../xontribs/powerline3", develop = true }
-xontrib-broot = { path = "../xontribs/broot", develop = true }
-xontrib-fzf-widgets = { path = "../xontribs/fzf-widgets", develop = true }
-xontrib-term-integrations = {path = "../xontribs/iterm2", develop=true}
+xontrib-avox-poetry = { path = "./exts/avox-poetry", develop = true }
+xontrib-hist-navigator = { path = "./exts/hist-navigator", develop = true }
+xontrib-cmd-durations = { path = "./exts/done", develop = true }
+xontrib-commands = { path = "./exts/commands", develop = true }
+xontrib-powerline3 = { path = "./exts/powerline", develop = true }
+xontrib-broot = { path = "./exts/broot", develop = true }
+xontrib-fzf-widgets = { path = "./exts/fzf-widgets", develop = true }
+xontrib-term-integrations = {path = "./exts/term", develop=true}
 
 # 3rd party
 # xontrib-output-search = "^0.5"

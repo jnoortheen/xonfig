@@ -1,0 +1,24 @@
+[submodule "exts/commands"]
+	path = exts/commands
+	url = git@github.com:jnoortheen/xontrib-commands.git
+[submodule "exts/broot"]
+	path = exts/broot
+	url = git@github.com:jnoortheen/xontrib-broot.git
+[submodule "exts/done"]
+	path = exts/done
+	url = git@github.com:jnoortheen/xontrib-cmd-done.git
+[submodule "exts/powerline"]
+	path = exts/powerline
+	url = git@github.com:jnoortheen/xontrib-powerline3.git
+[submodule "exts/hist-navigator"]
+	path = exts/hist-navigator
+	url = git@github.com:jnoortheen/xontrib-hist-navigator.git
+[submodule "exts/avox-poetry"]
+	path = exts/avox-poetry
+	url = git@github.com:jnoortheen/xontrib-avox-poetry.git
+[submodule "exts/fzf-widgets"]
+	path = exts/fzf-widgets
+	url = git@github.com:jnoortheen/xontrib-fzf-widgets.git
+[submodule "exts/term"]
+	path = exts/term
+	url = https://github.com/jnoortheen/xontrib-term-integrations.git
