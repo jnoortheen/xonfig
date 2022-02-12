@@ -22,3 +22,6 @@
 [submodule "exts/term"]
 	path = exts/term
 	url = https://github.com/jnoortheen/xontrib-term-integrations.git
+[submodule "benchmarks"]
+	path = benchmarks
+	url = https://github.com/jnoortheen/xonsh-benchmarks.git
