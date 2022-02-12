@@ -1,0 +1,110 @@
+[tool.poetry]
+name = "xonfig"
+version = "0.1.0"
+description = "Xonsh configuration"
+authors = ["Noortheen Raja <jnoortheen@gmail.com>"]
+packages = [
+    { include = "user_xsh" },
+]
+
+[tool.poetry.dependencies]
+python = ">=3.9,<4.0"
+
+xonsh = { path = "../xsh", develop = true }
+
+# our xontribs
+xontrib-avox-poetry = { path = "../xontribs/avox-poetry", develop = true }
+xontrib-hist-navigator = { path = "../xontribs/hist-navigator", develop = true }
+xontrib-cmd-durations = { path = "../xontribs/cmd-done", develop = true }
+xontrib-commands = { path = "../xontribs/commands", develop = true }
+xontrib-powerline3 = { path = "../xontribs/powerline3", develop = true }
+xontrib-broot = { path = "../xontribs/broot", develop = true }
+xontrib-fzf-widgets = { path = "../xontribs/fzf-widgets", develop = true }
+xontrib-term-integrations = {path = "../xontribs/iterm2", develop=true}
+
+# 3rd party
+# xontrib-output-search = "^0.5"
+#xontrib-kitty = "^0.0.2"
+#xontrib-back2dir = "*"
+#xontrib-argcomplete = "*"
+
+# functional libraries
+funcy = "*"
+pipe = { git = "https://github.com/jnoortheen/pipe" }
+lambdax = { git = "https://github.com/erezsh/lambdaX" }
+phi = "*"
+better_exceptions = "*"
+
+# subprocess alts
+sh = "^1.14.0"
+
+# dbus-python = "^1.2.16"
+#distro = "^1.5.0"
+psutil = "^5.7.2"
+
+#logging
+loguru = "*"
+rich = "*"
+
+jedi = "*"
+pyperclip = "*"
+pygments = "*"
+
+#marcel = "^0.11.9"
+prompt-toolkit = { version = "*" }
+arger = "^1.*"
+#stringcase = "^1.2.0"
+keyring = "^21.5.0"
+plumbum = "^1.7.0"
+nuclear = "^1.1.10"
+#pyobjc = "^8.0"
+
+[tool.poetry.dev-dependencies]
+# tooling
+#pyinotify = "*"
+#limeade = "^0.1.1"
+ipython = "*"
+#fixit = "^0.1.0"
+watchdog = "*"
+#uvloop = "^0.16.0"
+
+
+# debug
+#ipdb = "*"
+pdbpp = "*"
+icecream = "*"
+
+# test
+pytest = "*"
+pytest-cov = "*"
+pytest-timeout = "*"
+
+# linters
+flake8 = "*"
+mypy_extensions = "*"
+mypy = "*"
+
+# formatters
+black = "*"
+isort = "*"
+
+#asciimatics = "^1.12.0"
+
+# memory profilers
+#guppy3 = "^3.1.0"
+#memory-profiler = "^0.58.0"
+#scalene = "^1.1.12"
+#Pympler = "^0.9"
+#PySide2 = {version = "*", python = ">=3.6.1,<3.10"}
+#tuna = "^0.5.2"
+beautifulsoup4 = "^4.10.0"
+#snakeviz = "^2.1.0"
+#pyinstrument = "^3.3.0"
+#yappi = "^1.3.2"
+#pprofile = "^2.0.5"
+#pyprof2calltree = "^1.4.5"
+#sarge = "^0.1.6"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

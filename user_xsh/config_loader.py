@@ -1,0 +1,124 @@
+import functools
+import shlex
+import threading
+import typing as tp
+from pathlib import Path
+from queue import Queue
+
+import sys
+
+from xonsh.aliases import Aliases
+
+
+class BgThread(threading.Thread):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.queue = Queue()
+
+    def run(self):
+        while True:
+            args = self.queue.get()
+            if args is None:
+                self.queue.task_done()
+                return
+
+            if callable(args):
+                args()
+            self.queue.task_done()
+
+    def quit(self):
+        self.queue.put(None)
+
+
+def update_xonsh_dict(path: Path, var):
+    try:
+        if callable(var):
+            var = var()
+        import importlib.util
+
+        spec = importlib.util.spec_from_file_location(f"uxsh.{path.name}", str(path))
+        module = importlib.util.module_from_spec(spec)
+        spec.loader.exec_module(module)
+        for key, val in vars(module).items():  # type: str, tp.Any
+            if not key.startswith("_"):
+                if isinstance(var, Aliases) and isinstance(val, str):
+                    # speedup loading of alias.
+                    val = shlex.split(val)
+                var[key] = val
+    except:
+        from rich import console
+
+        c = console.Console()
+        c.print_exception(show_locals=True)
+
+
+class Loader:
+    """special importer with option to load in thread"""
+
+    def __init__(
+        self,
+        root_path: Path,
+        xontribs: tp.Tuple[str, ...] = (),
+        modules: tp.Tuple[str, ...] = (),
+    ):
+        self.modules = modules + tuple(map(lambda x: f"xontrib.{x}", (xontribs)))
+        self.root = root_path
+
+    def import_mods(self, *mods):
+        import importlib
+
+        for mod in mods:
+            try:
+                imp_mod = importlib.import_module(mod)
+                if not imp_mod.__file__.endswith(".py"):
+                    print(
+                        "Not a python module. may slowdown the loading",
+                        imp_mod.__file__,
+                    )
+            except Exception as ex:
+                print(f"Failed to import {mod} - {ex}", file=sys.stderr)
+
+    def load_config_files(self, file: Path):
+        from xonsh.built_ins import XSH
+        from xontrib.abbrevs import abbrevs
+
+        # todo: add json support , so we can have such special characters
+        abbrevs["|&"] = "2>&1 |"
+
+        for x, var in (
+            ("variables.py", XSH.env),
+            ("abbrevs.py", abbrevs),
+            ("aliases.py", XSH.aliases),
+        ):
+            update_xonsh_dict(file / x, var)
+
+    def get_functions(self):
+        yield functools.partial(self.load_config_files, file=self.root)
+        for imp in self.modules:
+            yield functools.partial(self.import_mods, imp)
+
+    @functools.cached_property
+    def _thread(self):
+        thread = BgThread(daemon=True)
+        thread.start()
+        return thread
+
+    def in_bgthread(self):
+        for func in self.get_functions():
+            self._thread.queue.put(func)
+
+        # note: wait for threads before completing rc.py
+        return lambda: self._thread.queue.join()
+
+    def normal(self):
+        for func in self.get_functions():
+            func()
+        return lambda: 1
+
+    def with_futures(self):
+        # running with this is slow
+        import concurrent.futures as cf
+
+        exc = cf.ThreadPoolExecutor(max_workers=2)
+        futures = [exc.submit(fn) for fn in self.get_functions()]
+        return lambda: list(cf.as_completed(futures))
