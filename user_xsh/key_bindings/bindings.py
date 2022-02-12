@@ -2,7 +2,7 @@ from prompt_toolkit.key_binding import KeyPressEvent
 from prompt_toolkit.keys import Keys
 from xontrib.hist_navigator import insert_text
 
-from user_xsh import kb_filters as filters
+from . import filters
 
 
 def complete_arg(event, arg: str):

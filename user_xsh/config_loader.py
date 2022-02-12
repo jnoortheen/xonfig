@@ -30,26 +30,39 @@ class BgThread(threading.Thread):
         self.queue.put(None)
 
 
+def exec_module(path: Path):
+    import importlib.util
+
+    spec = importlib.util.spec_from_file_location(f"uxsh.{path.name}", str(path))
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
+
+
 def update_xonsh_dict(path: Path, var):
+    module = exec_module(path)
+    special = {}
     try:
         if callable(var):
             var = var()
-        import importlib.util
 
-        spec = importlib.util.spec_from_file_location(f"uxsh.{path.name}", str(path))
-        module = importlib.util.module_from_spec(spec)
-        spec.loader.exec_module(module)
         for key, val in vars(module).items():  # type: str, tp.Any
-            if not key.startswith("_"):
+            if key.startswith("_"):
+                if key.endswith("_"):
+                    special[key] = val
+            else:
                 if isinstance(var, Aliases) and isinstance(val, str):
                     # speedup loading of alias.
                     val = shlex.split(val)
                 var[key] = val
+
     except:
         from rich import console
 
         c = console.Console()
         c.print_exception(show_locals=True)
+
+    return special
 
 
 class Loader:
@@ -61,8 +74,12 @@ class Loader:
         xontribs: tp.Tuple[str, ...] = (),
         modules: tp.Tuple[str, ...] = (),
     ):
-        self.modules = modules + tuple(map(lambda x: f"xontrib.{x}", (xontribs)))
+        self.modules = modules + self.to_xontribs(*xontribs)
         self.root = root_path
+
+    @staticmethod
+    def to_xontribs(*names: str):
+        return tuple(map(lambda x: f"xontrib.{x}", names))
 
     def import_mods(self, *mods):
         import importlib
@@ -90,7 +107,9 @@ class Loader:
             ("abbrevs.py", abbrevs),
             ("aliases.py", XSH.aliases),
         ):
-            update_xonsh_dict(file / x, var)
+            ext_vars = update_xonsh_dict(file / x, var)
+            if ext_vars:
+                self.update_modules(ext_vars)
 
     def get_functions(self):
         yield functools.partial(self.load_config_files, file=self.root)
@@ -122,3 +141,9 @@ class Loader:
         exc = cf.ThreadPoolExecutor(max_workers=2)
         futures = [exc.submit(fn) for fn in self.get_functions()]
         return lambda: list(cf.as_completed(futures))
+
+    def update_modules(self, ext_vars: "dict[str, ...]"):
+        if modules := ext_vars.get("_modules_"):
+            self.modules += modules
+        if xontribs := ext_vars.get("_xontribs_"):
+            self.modules += self.to_xontribs(*xontribs)

@@ -134,7 +134,7 @@ _xontribs_ = (
     "vox",
     "avox_poetry",
     # --- completions --- #
-    "argcomplete",
+    # "argcomplete",
     "jedi",
     # --- prompt --- #
     "cmd_done",
@@ -152,8 +152,9 @@ _xontribs_ = (
     "fish_completer",
 )
 _modules_ = (
-    "user_xsh/xliases/*",
-    "user_xsh/key_bindings/bindings.py",
-    "user_xsh/tb_hooks/hook_better_exceptions.py",
+    "user_xsh.xaliases.docker",
+    "user_xsh.xaliases.misc",
+    "user_xsh.key_bindings.bindings",
+    "user_xsh.tb_hooks.hook_better_exceptions",
     # "user_xsh.history.completer",
 )
