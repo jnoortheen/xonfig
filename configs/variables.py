@@ -116,8 +116,6 @@ fzf_ssh_binding = "c-s"  # Ctrl+S
 fzf_file_binding = "c-t"  # Ctrl+T
 fzf_dir_binding = "c-g"  # Ctrl+G
 
-XONSH_GITSTATUS_FIELDS_HIDDEN = ("lines_added", "lines_removed")
-
 # If we disable it, then tab-completer prints things on prompt
 # it enabled: on-cd writes to stdout suffers
 # THREAD_SUBPROCS = False
