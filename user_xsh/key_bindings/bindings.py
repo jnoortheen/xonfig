@@ -48,12 +48,12 @@ def custom_keybindings(bindings, **_):
         insert_text(event, "git status")
 
     @handler("escape", "b", filter=filters.cmd_text_available)
-    def run_git_status(event):
+    def git_branch(event):
         """Show git status"""
-        insert_text(event, "git branch")
+        insert_text(event, "git branch -vv")
 
     @handler("escape", "p", filter=filters.cmd_text_available)
-    def run_git_status(event):
+    def git_push(event):
         """Show git status"""
         insert_text(event, "git push")
 

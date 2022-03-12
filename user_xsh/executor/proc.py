@@ -53,7 +53,7 @@ class Chainable:
 class Spec(Chainable):
     def __init__(self, program: str, *args: Spreadable):
         self.program = program
-        self.args: "tuple[str]" = tuple(self._get_args(*args))
+        self.args: "tuple[str, ...]" = tuple(self._get_args(*args))
 
     def __str__(self):
         return f"<{self.__class__.__name__}>: {self.args}"
