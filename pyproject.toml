@@ -60,6 +60,7 @@ keyring = "^21.5.0"
 plumbum = "^1.7.0"
 nuclear = "^1.1.10"
 #pyobjc = "^8.0"
+xontrib-jedi = {git = "https://github.com/xonsh/xontrib-jedi", branch="main"}
 
 [tool.poetry.dev-dependencies]
 # tooling
