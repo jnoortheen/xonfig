@@ -26,3 +26,5 @@ Loader(XSH_ROOT_PATH / "configs").normal()
 # usable objects to the console
 from pipe import *  # noqa - import pipe enabled functions
 from lambdax import X  # noqa
+
+from user_xsh.completers import django_py_manage  # noqa
