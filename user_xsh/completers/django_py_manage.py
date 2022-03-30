@@ -13,7 +13,7 @@ def django_manage_py_completer(ctx: CommandContext):
     if ctx.arg_index > 1 and args[1] != "manage.py":
         return
 
-    return comp_based_completer(ctx, comp_start_index=1, DJANGO_AUTO_COMPLETE="1")
+    return comp_based_completer(ctx, start_index=1, DJANGO_AUTO_COMPLETE="1")
 
 
 xonsh.completers.completer.add_one_completer(
