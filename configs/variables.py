@@ -148,6 +148,7 @@ _xontribs_ = (
     "commands",
     "term_integration",
     "fish_completer",
+    "django",
 )
 _modules_ = (
     "user_xsh.xaliases.docker",

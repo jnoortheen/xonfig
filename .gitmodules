@@ -28,3 +28,6 @@
 [submodule "ptk"]
 	path = ptk
 	url = git@github.com:jnoortheen/python-prompt-toolkit.git
+[submodule "exts/django"]
+	path = exts/django
+	url = git@github.com:jnoortheen/xontrib-django.git

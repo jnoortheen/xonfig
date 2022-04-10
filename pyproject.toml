@@ -23,6 +23,7 @@ xontrib-powerline3 = { path = "./exts/powerline", develop = true }
 xontrib-broot = { path = "./exts/broot", develop = true }
 xontrib-fzf-widgets = { path = "./exts/fzf-widgets", develop = true }
 xontrib-term-integrations = {path = "./exts/term", develop=true}
+xontrib-django = {path = "./exts/django", develop=true}
 
 # 3rd party
 # xontrib-output-search = "^0.5"
