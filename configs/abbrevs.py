@@ -1,4 +1,4 @@
-lf = "lefthook"
+# lf = "lefthook"
 ll = "ls -alh"
 
 dc = "docker compose"
