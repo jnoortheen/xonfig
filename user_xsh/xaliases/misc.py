@@ -1,8 +1,8 @@
 import os
 
 from user_xsh.bakery import current_folder_name, trace_
-from xontrib_commands.utils import Command, run as R
 from xonsh.built_ins import XSH
+from xontrib_commands.utils import Command, run as R
 
 
 def _folder_size(path):
@@ -103,7 +103,7 @@ def _start_cola():
     R("poetry run cola &")
 
 
-@Command.reg
+@Command.reg_no_thread
 @trace_
 def release_sof(version="patch"):
     msg = R("poetry", "version", version)
