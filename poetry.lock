@@ -444,7 +444,7 @@ loguru = ">=0.5.3,<0.6.0"
 
 [[package]]
 name = "nuclear"
-version = "1.2.1"
+version = "1.2.3"
 description = "Declarative parser for command line interfaces"
 category = "main"
 optional = false
@@ -824,7 +824,7 @@ python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*"
 
 [[package]]
 name = "soupsieve"
-version = "2.3.2"
+version = "2.3.2.post1"
 description = "A modern CSS selector implementation for Beautiful Soup."
 category = "dev"
 optional = false
@@ -921,7 +921,7 @@ python-versions = "*"
 
 [[package]]
 name = "xonsh"
-version = "0.11.0"
+version = "0.12.1"
 description = "Python-powered, cross-platform, Unix-gazing shell"
 category = "main"
 optional = false
@@ -940,6 +940,24 @@ zipapp = ["importlib-resources"]
 [package.source]
 type = "directory"
 url = "../xsh"
+
+[[package]]
+name = "xontrib-argcomplete"
+version = "0.3.2"
+description = ""
+category = "main"
+optional = false
+python-versions = ">=3.6"
+develop = false
+
+[package.dependencies]
+xonsh = ">=0.12.1"
+
+[package.source]
+type = "git"
+url = "https://github.com/jnoortheen/xontrib-argcomplete"
+reference = "refactor"
+resolved_reference = "c867525a27f3bcc26b351a72c1649c2165277e04"
 
 [[package]]
 name = "xontrib-avox-poetry"
@@ -1012,12 +1030,15 @@ url = "exts/commands"
 
 [[package]]
 name = "xontrib-django"
-version = "0.0.1"
+version = "0.0.2"
 description = "Django auto-completions for Xonsh shell"
 category = "main"
 optional = false
 python-versions = ">=3.7"
 develop = true
+
+[package.dependencies]
+xonsh = ">=0.12"
 
 [package.source]
 type = "directory"
@@ -1058,7 +1079,7 @@ url = "exts/hist-navigator"
 
 [[package]]
 name = "xontrib-jedi"
-version = "0.0.1"
+version = "0.0.2"
 description = "Improved Xonsh's Python completions using jedi"
 category = "main"
 optional = false
@@ -1067,19 +1088,17 @@ develop = false
 
 [package.dependencies]
 jedi = ">=0.18.1"
-
-[package.extras]
-xonsh = ["xonsh @ git+https://github.com/xonsh/xonsh/@main"]
+xonsh = ">=0.12"
 
 [package.source]
 type = "git"
 url = "https://github.com/xonsh/xontrib-jedi"
 reference = "main"
-resolved_reference = "0b643a1d433cd30007e0732dac6d968c84b5d4b4"
+resolved_reference = "9d5cc75f6b0469858c21e99947e2fcc2eca7f916"
 
 [[package]]
 name = "xontrib-powerline3"
-version = "0.3.16"
+version = "0.3.17"
 description = "Yet another powerline theme for xonsh with async prompt support."
 category = "main"
 optional = false
@@ -1088,7 +1107,7 @@ develop = true
 
 [package.dependencies]
 tomlkit = "*"
-xonsh = ">=0.9.20"
+xonsh = ">=0.12"
 
 [package.source]
 type = "directory"
@@ -1096,7 +1115,7 @@ url = "exts/powerline"
 
 [[package]]
 name = "xontrib-term-integrations"
-version = "0.1.1"
+version = "0.1.3"
 description = "Support shell integration of terminal programs iTerm2, Kitty..."
 category = "main"
 optional = false
@@ -1104,7 +1123,7 @@ python-versions = ">=3.8"
 develop = true
 
 [package.dependencies]
-xonsh = ">=0.11.0"
+xonsh = ">=0.12.0"
 
 [package.source]
 type = "directory"
@@ -1113,7 +1132,7 @@ url = "exts/term"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.9,<4.0"
-content-hash = "b19fa5387ebbae6326e9608a0009e4e2c7b3f2de39d967353c238d97c0f8539e"
+content-hash = "2cf2630025c6d7d8dec545a4dc3deabe061f49989b6caf822f87e411b03bcb50"
 
 [metadata.files]
 appnope = [
@@ -1402,8 +1421,8 @@ notify-py = [
     {file = "notify_py-0.3.3.tar.gz", hash = "sha256:8561c7d363eddad3b07be11405135e168c2f52e42bdbfc7f2e613b07a8e7bae0"},
 ]
 nuclear = [
-    {file = "nuclear-1.2.1-py3-none-any.whl", hash = "sha256:63ee97f015dd8e65b9fed39a51ad16dffd75b636a866b21af8e82ef012451430"},
-    {file = "nuclear-1.2.1.tar.gz", hash = "sha256:417ea9fc14d3bf178644766e616cf7f9eacb61add536a741b612dcca08e3d0d6"},
+    {file = "nuclear-1.2.3-py3-none-any.whl", hash = "sha256:ce1cf34c6dbb6a00776eaa72cc1d2de8fe0db735eb17153e8a5cb0e10046dd2d"},
+    {file = "nuclear-1.2.3.tar.gz", hash = "sha256:9261cf8223d0375ec58f50e365f31b449e49167877d08a659d6b941ee1ed0e93"},
 ]
 packaging = [
     {file = "packaging-21.3-py3-none-any.whl", hash = "sha256:ef103e05f519cdc783ae24ea4e2e0f508a9c99b2d4969652eed6a2e1ea5bd522"},
@@ -1574,8 +1593,8 @@ six = [
     {file = "six-1.16.0.tar.gz", hash = "sha256:1e61c37477a1626458e36f7b1d82aa5c9b094fa4802892072e49de9c60c4c926"},
 ]
 soupsieve = [
-    {file = "soupsieve-2.3.2-py3-none-any.whl", hash = "sha256:a714129d3021ec17ce5be346b1007300558b378332c289a1a20e7d4de6ff18a5"},
-    {file = "soupsieve-2.3.2.tar.gz", hash = "sha256:0bcc6d7432153063e3df09c3ac9442af3eba488715bfcad6a4c38ccb2a523124"},
+    {file = "soupsieve-2.3.2.post1-py3-none-any.whl", hash = "sha256:3b2503d3c7084a42b1ebd08116e5f81aadfaea95863628c80a3b774a11b7c759"},
+    {file = "soupsieve-2.3.2.post1.tar.gz", hash = "sha256:fc53893b3da2c33de295667a0e19f078c14bf86544af307354de5fcf12a3f30d"},
 ]
 stack-data = [
     {file = "stack_data-0.2.0-py3-none-any.whl", hash = "sha256:999762f9c3132308789affa03e9271bbbe947bf78311851f4d485d8402ed858e"},
@@ -1635,6 +1654,7 @@ wmctrl = [
     {file = "wmctrl-0.4.tar.gz", hash = "sha256:66cbff72b0ca06a22ec3883ac3a4d7c41078bdae4fb7310f52951769b10e14e0"},
 ]
 xonsh = []
+xontrib-argcomplete = []
 xontrib-avox-poetry = []
 xontrib-broot = []
 xontrib-cmd-durations = []

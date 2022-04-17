@@ -132,7 +132,7 @@ _xontribs_ = (
     "vox",
     "avox_poetry",
     # --- completions --- #
-    # "argcomplete",
+    "argcomplete",
     "jedi",
     # --- prompt --- #
     "cmd_done",
