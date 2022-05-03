@@ -29,7 +29,7 @@ xontrib-django = {path = "./exts/django", develop=true}
 # xontrib-output-search = "^0.5"
 #xontrib-kitty = "^0.0.2"
 #xontrib-back2dir = "*"
-xontrib-argcomplete = {git = "https://github.com/jnoortheen/xontrib-argcomplete", branch="refactor"}
+xontrib-argcomplete = {git = "https://github.com/jnoortheen/xontrib-argcomplete", branch="master"}
 
 # functional libraries
 funcy = "*"
