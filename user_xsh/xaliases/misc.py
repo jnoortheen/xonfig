@@ -47,38 +47,7 @@ def os_build(args):
     )
 
 
-@Command.reg
-@trace_
-def clean_disk():
-    print("docker clean")
-    R("docker system prune -f")
-    R("docker builder prune -f")
-    print("delete old nix generations")
-    R("nix-env --delete-generations old")
-    R("sudo nix-env --delete-generations old")
-    R("nix-collect-garbage --delete-old")
-    R("sudo nix-collect-garbage --delete-old")
-    R("nix-store --gc")
-
-    print("Delete old snap packages")
-    older_snaps = R("env LANG=en_US.UTF-8 snap list --all")
-    for snap in older_snaps.splitlines():
-        if "disabled" not in snap:
-            continue
-        snap_name, vers, revision, *_ = snap.split()
-        R("sudo", "snap", "remove", snap_name, "--revision", revision)
-
-    print("/n/n pacman cache clear")
-    R("sudo paccache -rk1")
-
-    print("clean yarn")
-    R("yarn cache clean")
-
-    print("clean journalctl logs past 7days")
-    R("sudo journalctl --vacuum-time=2d")
-
-
-@Command.reg
+@Command.reg_no_thread
 @trace_
 def record_stats(pkg_name=".", path=".local/stats.txt"):
     stat = R("scc", pkg_name)

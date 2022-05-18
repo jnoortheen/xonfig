@@ -1,4 +1,4 @@
-from user_xsh.bakery import current_folder_name
+from user_xsh.bakery import current_folder_name, trace_
 from xontrib_commands.utils import Command, run as R
 
 
@@ -7,8 +7,8 @@ def stop(cont, current_check=False):
     if current_check:
         remove = not running_wd(cont)
     if remove:
-        R("docker", "container", "stop", cont)
-        R("docker", "container", "rm", cont)
+        R("docker", "stop", cont)
+        R("docker", "rm", cont)
 
 
 def running_wd(cont):
@@ -25,7 +25,17 @@ def compose_up(*services):
     # trace off
 
 
-@Command.reg
-def docker_stop_all():
+@Command.reg_no_thread
+@trace_
+def docker_stop_all(no_cwd=False):
+    """
+
+    Parameters
+    ----------
+    no_cwd
+        do not stop if started in current working directory using docker-compose
+
+    """
     for cont in R("docker", "container", "ls", "-aq", capture=True).splitlines():
-        stop(cont, True)
+        print(f"stopping {cont}...")
+        stop(cont, no_cwd)

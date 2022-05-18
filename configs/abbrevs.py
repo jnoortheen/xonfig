@@ -32,7 +32,7 @@ gpl = "git pull"
 # gc = "git commit -m ! "
 # gca = "git commit --amend"
 # gcan = "git commit --amend --no-edit"
-gsc = "git switch --create <edit> parent/main"
+# gsc = "git switch --create <edit> parent/main"
 nproc = "sysctl -n hw.ncpu"
 
 
@@ -80,24 +80,24 @@ gcdm = _git_checkout_merge(_get_dev_branch, _get_main_branch)
 gcm = _git_checkout(_get_main_branch)
 gcmd = _git_checkout_merge(_get_main_branch, _get_dev_branch)
 
-sstart = "sudo systemctl start"
-sstop = "sudo systemctl stop"
-srestart = "sudo systemctl restart"
-sstatus = "sudo systemctl status"
-senable = "sudo systemctl enable"
-sdisable = "sudo systemctl disable"
-smask = "sudo systemctl mask"
-sunmask = "sudo systemctl unmask"
-sreload = "sudo systemctl daemon-reload"
-sfailed = "sudo systemctl list-units --failed"
-
-ustart = "systemctl start --user"
-ustop = "systemctl stop --user"
-urestart = "systemctl restart --user"
-ustatus = "systemctl status --user"
-uenable = "systemctl enable --user"
-udisable = "systemctl disable --user"
-ureload = "sudo systemctl daemon-reload --user"
+# sstart = "sudo systemctl start"
+# sstop = "sudo systemctl stop"
+# srestart = "sudo systemctl restart"
+# sstatus = "sudo systemctl status"
+# senable = "sudo systemctl enable"
+# sdisable = "sudo systemctl disable"
+# smask = "sudo systemctl mask"
+# sunmask = "sudo systemctl unmask"
+# sreload = "sudo systemctl daemon-reload"
+# sfailed = "sudo systemctl list-units --failed"
+#
+# ustart = "systemctl start --user"
+# ustop = "systemctl stop --user"
+# urestart = "systemctl restart --user"
+# ustatus = "systemctl status --user"
+# uenable = "systemctl enable --user"
+# udisable = "systemctl disable --user"
+# ureload = "sudo systemctl daemon-reload --user"
 
 pipup = "pip install --upgrade pip"
 pt = "poetry"
@@ -109,6 +109,7 @@ vd = "vox deactivate"
 vap = "vox activate @$(poetry env info -p)"
 
 ncdu = "dua i"
+df = "duf"
 
 yay = "paru"
 

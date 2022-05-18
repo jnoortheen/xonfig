@@ -152,6 +152,7 @@ _xontribs_ = (
 )
 _modules_ = (
     "user_xsh.xaliases.docker",
+    "user_xsh.xaliases.cleanup",
     "user_xsh.xaliases.misc",
     "user_xsh.key_bindings.bindings",
     "user_xsh.tb_hooks.hook_better_exceptions",
