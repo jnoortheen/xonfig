@@ -19,6 +19,7 @@ def _load():
 
     xontribs_load(
         [
+            "abbrevs",
             # venv
             "vox",
             # "avox_poetry",
