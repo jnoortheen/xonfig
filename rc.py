@@ -40,7 +40,8 @@ def _load():
             "term_integration",
             "fish_completer",
             "django",
-        ]
+        ],
+        # verbose=True,
     )
     from user_xsh.config_loader import Loader
 

@@ -47,7 +47,9 @@ def update_xonsh_dict(path: Path, var):
             var = var()
 
         for key, val in vars(module).items():  # type: str, tp.Any
-            if (not key.startswith("__")) and key.startswith("_") and key.endswith("_"):
+            if key.startswith("__"):
+                continue
+            if key.startswith("_") and key.endswith("_"):
                 special[key] = val
             else:
                 if isinstance(var, Aliases) and isinstance(val, str):
@@ -99,11 +101,10 @@ class Loader:
 
     def load_config_files(self, file: Path):
         from xonsh.built_ins import XSH
-        from xontrib.abbrevs import abbrevs
 
         for x, var in (
             ("variables.py", XSH.env),
-            ("abbrevs.py", abbrevs),
+            ("abbrevs.py", XSH.builtins.abbrevs),
             ("aliases.py", XSH.aliases),
         ):
             ext_vars = update_xonsh_dict(file / x, var)
