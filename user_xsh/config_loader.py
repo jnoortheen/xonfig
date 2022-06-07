@@ -47,14 +47,16 @@ def update_xonsh_dict(path: Path, var):
             var = var()
 
         for key, val in vars(module).items():  # type: str, tp.Any
-            if key.startswith("_"):
-                if key.endswith("_"):
-                    special[key] = val
+            if (not key.startswith("__")) and key.startswith("_") and key.endswith("_"):
+                special[key] = val
             else:
                 if isinstance(var, Aliases) and isinstance(val, str):
-                    # speedup loading of alias.
+                    # list is faster than string as alias
                     val = shlex.split(val)
-                var[key] = val
+                if path.name.endswith("abbrevs.py") and key.endswith("_abbrevs"):
+                    var.update(val)
+                else:
+                    var[key] = val
 
     except:
         from rich import console
@@ -99,9 +101,6 @@ class Loader:
         from xonsh.built_ins import XSH
         from xontrib.abbrevs import abbrevs
 
-        # todo: add json support , so we can have such special characters
-        abbrevs["|&"] = "2>&1 |"
-
         for x, var in (
             ("variables.py", XSH.env),
             ("abbrevs.py", abbrevs),
@@ -145,5 +144,3 @@ class Loader:
     def update_modules(self, ext_vars: "dict[str, ...]"):
         if modules := ext_vars.get("_modules_"):
             self.modules += modules
-        if xontribs := ext_vars.get("_xontribs_"):
-            self.modules += self.to_xontribs(*xontribs)

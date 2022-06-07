@@ -1,41 +1,3 @@
-# lf = "lefthook"
-ll = "ls -alh"
-
-dc = "docker compose"
-dr = "docker run --rm -ti"
-drun = "docker run --rm -ti"
-dsa = "docker-stop-all"
-
-pm = "python manage.py"
-pmm = "python manage.py migrate"
-pmk = "python manage.py makemigrations"
-grep = "grep --ignore-case"
-
-# nix os
-osbuild = "sudo nixos-rebuild"
-oswitch = "os-build switch"
-ostest = "os-build test"
-
-cat = "bat"
-time = "time -p"
-
-xodo = "subl ~/src/shell/TODO.todo"
-xcode = "code ~/src/shell"
-alias = "subl ~/src/shell/aliases.py"
-abbr = "subl ~/src/shell/abbrevs.py"
-
-cola = "git-cola 2> /dev/null &"
-gl = "git log --oneline --all --graph"
-gf = "git fetch --all --prune --tags"
-gp = "git push --follow-tags"
-gpl = "git pull"
-# gc = "git commit -m ! "
-# gca = "git commit --amend"
-# gcan = "git commit --amend --no-edit"
-# gsc = "git switch --create <edit> parent/main"
-nproc = "sysctl -n hw.ncpu"
-
-
 def _get_branches() -> str:
     from xontrib_commands.utils import run
 
@@ -75,42 +37,85 @@ def _git_checkout_merge(check_func, merge_func):
     return _wrapper
 
 
-gcd = _git_checkout(_get_dev_branch)
-gcdm = _git_checkout_merge(_get_dev_branch, _get_main_branch)
-gcm = _git_checkout(_get_main_branch)
-gcmd = _git_checkout_merge(_get_main_branch, _get_dev_branch)
+git_abbrevs = dict(
+    # cola="git-cola 2> /dev/null &",
+    gl="git log --oneline --all --graph",
+    gf="git fetch --all --prune --tags",
+    gp="git push --follow-tags",
+    gpl="git pull",
+    # git workflows
+    # gc = "git commit -m ! ",
+    # gca = "git commit --amend",
+    # gcan = "git commit --amend --no-edit",
+    # gsc = "git switch --create <edit> parent/main",
+    gcd=_git_checkout(_get_dev_branch),
+    gcdm=_git_checkout_merge(_get_dev_branch, _get_main_branch),
+    gcm=_git_checkout(_get_main_branch),
+    gcmd=_git_checkout_merge(_get_main_branch, _get_dev_branch),
+)
+# systemctl_abbrevs = dict(
+#     # systemd
+#     sstart="sudo systemctl start",
+#     sstop="sudo systemctl stop",
+#     srestart="sudo systemctl restart",
+#     sstatus="sudo systemctl status",
+#     senable="sudo systemctl enable",
+#     sdisable="sudo systemctl disable",
+#     smask="sudo systemctl mask",
+#     sunmask="sudo systemctl unmask",
+#     sreload="sudo systemctl daemon-reload",
+#     sfailed="sudo systemctl list-units --failed",
+#     ustart="systemctl start --user",
+#     ustop="systemctl stop --user",
+#     urestart="systemctl restart --user",
+#     ustatus="systemctl status --user",
+#     uenable="systemctl enable --user",
+#     udisable="systemctl disable --user",
+#     ureload="sudo systemctl daemon-reload --user",
+# )
 
-# sstart = "sudo systemctl start"
-# sstop = "sudo systemctl stop"
-# srestart = "sudo systemctl restart"
-# sstatus = "sudo systemctl status"
-# senable = "sudo systemctl enable"
-# sdisable = "sudo systemctl disable"
-# smask = "sudo systemctl mask"
-# sunmask = "sudo systemctl unmask"
-# sreload = "sudo systemctl daemon-reload"
-# sfailed = "sudo systemctl list-units --failed"
-#
-# ustart = "systemctl start --user"
-# ustop = "systemctl stop --user"
-# urestart = "systemctl restart --user"
-# ustatus = "systemctl status --user"
-# uenable = "systemctl enable --user"
-# udisable = "systemctl disable --user"
-# ureload = "sudo systemctl daemon-reload --user"
+python_abbrevs = dict(
+    pipup="pip install --upgrade pip",
+    pt="poetry",
+    vav="vox activate .venv",
+    vd="vox deactivate",
+    vap="vox activate @$(poetry env info -p)",
+)
 
-pipup = "pip install --upgrade pip"
-pt = "poetry"
+django_abbrevs = dict(
+    pm="python manage.py",
+    pmm="python manage.py migrate",
+    pmk="python manage.py makemigrations",
+)
 
-# yay = "yay --cleanafter"
+# nixos_abbrevs = dict(
+#     osbuild="sudo nixos-rebuild",
+#     oswitch="os-build switch",
+#     ostest="os-build test",
+# )
 
-vav = "vox activate .venv"
-vd = "vox deactivate"
-vap = "vox activate @$(poetry env info -p)"
+# arch_linux_abbrevs = dict(
+#     # yay = "yay --cleanafter",
+#     yay="paru",
+# )
+clis_abbrevs = dict(
+    # lf = "lefthook",
+    ll="ls -alh",
+    dc="docker compose",
+    dr="docker run --rm -ti",
+    drun="docker run --rm -ti",
+    dsa="docker-stop-all",
+    grep="grep --ignore-case",
+    cat="bat",
+    time="time -p",
+    xodo="subl ~/src/shell/TODO.todo",
+    xcode="code ~/src/shell",
+    alias="subl ~/src/shell/aliases.py",
+    abbr="subl ~/src/shell/abbrevs.py",
+    # nproc="sysctl -n hw.ncpu",
+    ncdu="dua i",
+    df="duf",
+    # ps = "procs",
+)
 
-ncdu = "dua i"
-df = "duf"
-
-yay = "paru"
-
-# ps = "procs"
+shell_abbrevs = {"|&": "2>&1 |"}

@@ -127,29 +127,7 @@ BASH_COMPLETIONS = ["/opt/homebrew/Cellar/bash-completion/1.3_3/etc/bash_complet
 
 CMD_COMPLETIONS_SHOW_DESC = True
 
-_xontribs_ = (
-    # venv
-    "vox",
-    "avox_poetry",
-    # --- completions --- #
-    "argcomplete",
-    "jedi",
-    # --- prompt --- #
-    "cmd_done",
-    # cli integration
-    "broot",
-    "fzf_widgets",
-    # theme
-    "powerline3",
-    # keybindings
-    "hist_navigator",
-    # misc
-    # "back2dir",
-    "commands",
-    "term_integration",
-    "fish_completer",
-    "django",
-)
+
 _modules_ = (
     "user_xsh.xaliases.docker",
     "user_xsh.xaliases.cleanup",
