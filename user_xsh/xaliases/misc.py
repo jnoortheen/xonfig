@@ -75,6 +75,13 @@ def _start_cola():
 @Command.reg_no_thread
 @trace_
 def release_sof(version="patch"):
+    """
+        Release a new version for poetry based projects
+    Parameters
+    ----------
+    version
+        type of the new version. could be one of patch/minor/major...
+    """
     msg = R("poetry", "version", version)
     print(msg)
     version = msg.split()[-1]

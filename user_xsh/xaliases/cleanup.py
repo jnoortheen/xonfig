@@ -78,6 +78,11 @@ def _cleanup_osx():
         "rm -rfv ~/Library/Containers/com.apple.mail/Data/Library/Logs/Mail/* &>/dev/null"
     )
     R("rm -rfv ~/Library/Logs/CoreSimulator/* &>/dev/null")
+    R("rm -rd ~/Library/Caches/Homebrew")
+    R("rm -rd ~/Library/Caches/pypoetry")
+    R("rm -rd ~/Library/Caches/pip")
+    R("rm -rd ~/Library/Caches/lima")
+    R("rm -rd ~/Library/Caches/pdm")
 
 
 #
