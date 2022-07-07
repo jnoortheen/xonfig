@@ -1,5 +1,6 @@
 from user_xsh.bakery import current_folder_name, trace_
-from xontrib_commands.utils import Command, run as R
+from xontrib_commands.utils import run as R
+from xontrib_commands.argerize import Command
 
 
 def stop(cont, current_check=False):

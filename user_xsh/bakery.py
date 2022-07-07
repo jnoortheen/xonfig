@@ -4,8 +4,8 @@ import glob
 import os
 
 import funcy
-
-from xontrib_commands.utils import xsh, run
+from xonsh.built_ins import XSH as xsh
+from xontrib_commands.utils import run
 
 poetry_run = lambda x: run(f"poetry run {x}")
 poetry_run_py = lambda x: run(f"poetry run python {x}")

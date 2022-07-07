@@ -1,7 +1,8 @@
 from shutil import which
 
 from user_xsh.bakery import trace_
-from xontrib_commands.utils import Command, run as R
+from xontrib_commands.utils import run as R
+from xontrib_commands.argerize import Command
 import subprocess as sp
 
 
@@ -49,7 +50,7 @@ def _cleanup_package_managers():
         R("brew autoremove")
         R("brew cleanup --prune 0")
         R("brew doctor")
-    
+
     if which("cargo"):
         # you first need to install cargo-cache with `cargo install cargo-cache`
         R("cargo cache -a")

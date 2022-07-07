@@ -37,7 +37,7 @@ def _load():
             "hist_navigator",
             # misc
             # "back2dir",
-            "commands",
+            # "commands",
             "term_integration",
             "fish_completer",
             "django",
