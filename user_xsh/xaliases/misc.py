@@ -1,20 +1,7 @@
-import os
-
 from user_xsh.bakery import current_folder_name, trace_
 from xonsh.built_ins import XSH
-from xontrib_commands.utils import run as R
 from xontrib_commands.argerize import Command
-
-
-def _folder_size(path):
-    follow_symlinks = False
-    try:
-        with os.scandir(path) as it:
-            return sum(
-                _folder_size(entry, follow_symlinks=follow_symlinks) for entry in it
-            )
-    except NotADirectoryError:
-        return os.stat(path, follow_symlinks=follow_symlinks).st_size
+from xontrib_commands.utils import run as R
 
 
 @Command.reg
