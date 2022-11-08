@@ -313,8 +313,8 @@ def _print_big_files():
 @Command.reg_no_thread
 @trace_
 def cleanup():
-    old_available = sp.check_call("df / | tail - 1 | awk '{print $4}'", shell=True)
+    # old_available = sp.check_call("df / | tail - 1 | awk '{print $4}'", shell=True)
     _cleanup_tools()
     _cleanup_linux()
     _cleanup_package_managers()
-    _print_big_files()
+    # _print_big_files()
