@@ -104,7 +104,6 @@ PROJECT_PATHS = [
     f"{_base_src}/py/_repos/",
     f"{_base_src}/py/divisible/",
     f"{_base_src}/py/_forks/",
-    f"{_base_src}/",
     f"{_base_src}/shell/xontribs",
 ]
 

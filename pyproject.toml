@@ -10,7 +10,7 @@ license = "GPL v3"
 readme = "readme.md"
 
 [tool.poetry.dependencies]
-python = ">=3.9,<4.0"
+python = ">=3.11,<4.0"
 
 xonsh = { path = "../xsh", develop = true }
 
@@ -30,6 +30,7 @@ xontrib-django = {path = "./exts/django", develop=true}
 #xontrib-kitty = "^0.0.2"
 #xontrib-back2dir = "*"
 xontrib-argcomplete = {git = "https://github.com/jnoortheen/xontrib-argcomplete", branch="master"}
+xontrib-jedi = {git = "https://github.com/xonsh/xontrib-jedi", branch="main"}
 
 # functional libraries
 funcy = "*"
@@ -39,11 +40,12 @@ phi = "*"
 better_exceptions = "*"
 
 # subprocess alts
-sh = "^1.14.0"
+sh = "*"
+#plumbum = "*"
 
 # dbus-python = "^1.2.16"
 #distro = "^1.5.0"
-psutil = "^5.7.2"
+psutil = "*"
 
 #logging
 loguru = "*"
@@ -54,15 +56,13 @@ pygments = "*"
 
 #marcel = "^0.11.9"
 prompt-toolkit = {path = "./ptk"}
-arger = "^1.*"
+arger = "*"
 #stringcase = "^1.2.0"
-keyring = "^21.5.0"
-plumbum = "^1.7.0"
+keyring = "*"
 #nuclear = "^1.1.10"
 #pyobjc = "^8.0"
-xontrib-jedi = {git = "https://github.com/xonsh/xontrib-jedi", branch="main"}
 
-[tool.poetry.dev-dependencies]
+[tool.poetry.group.dev.dependencies]
 # tooling
 #pyinotify = "*"
 #limeade = "^0.1.1"
@@ -77,11 +77,13 @@ watchdog = "*"
 pdbpp = "*"
 icecream = "*"
 
+[tool.poetry.group.test.dependencies]
 # test
 pytest = "*"
 pytest-cov = "*"
 pytest-timeout = "*"
 
+[tool.poetry.group.linter.dependencies]
 # linters
 flake8 = "*"
 mypy_extensions = "*"
@@ -93,22 +95,17 @@ isort = "*"
 
 #asciimatics = "^1.12.0"
 
+[tool.poetry.group.profile.dependencies]
 # memory profilers
-#guppy3 = "^3.1.0"
-#memory-profiler = "^0.58.0"
-#scalene = "^1.1.12"
-#Pympler = "^0.9"
-#PySide2 = {version = "*", python = ">=3.6.1,<3.10"}
-#tuna = "^0.5.2"
-beautifulsoup4 = "^4.10.0"
-#snakeviz = "^2.1.0"
-#yappi = "^1.3.2"
-#pprofile = "^2.0.5"
-#pyprof2calltree = "^1.4.5"
-#sarge = "^0.1.6"
-#yappi = "^1.3.3"
-#pyinstrument = "^4.1.1"
-
-[build-system]
-requires = ["poetry-core>=1.0.0"]
-build-backend = "poetry.core.masonry.api"
+guppy3 = "^3.1.0"
+memory-profiler = "^0.58.0"
+scalene = "^1.1.12"
+Pympler = "^0.9"
+PySide2 = {version = "*", python = ">=3.6.1,<3.10"}
+tuna = "^0.5.2"
+snakeviz = "^2.1.0"
+pprofile = "^2.0.5"
+pyprof2calltree = "^1.4.5"
+sarge = "^0.1.6"
+yappi = "^1.3.3"
+pyinstrument = "^4.1.1"
