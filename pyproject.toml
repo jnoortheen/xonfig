@@ -55,7 +55,7 @@ pyperclip = "*"
 pygments = "*"
 
 #marcel = "^0.11.9"
-prompt-toolkit = {path = "./ptk"}
+prompt-toolkit = "*"
 arger = "*"
 #stringcase = "^1.2.0"
 keyring = "*"
