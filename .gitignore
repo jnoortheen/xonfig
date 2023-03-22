@@ -208,3 +208,6 @@ nohup.out
 
 # OSX hidden directories
 .DS_Store
+
+# intellij IDE
+.idea/

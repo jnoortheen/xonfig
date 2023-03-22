@@ -12,7 +12,9 @@ readme = "readme.md"
 [tool.poetry.dependencies]
 python = ">=3.11,<4.0"
 
-xonsh = { path = "../xsh", develop = true }
+xonsh = {git = "https://github.com/xonsh/xonsh"}
+#xonsh = { path = "../xsh", develop = true }
+
 
 # local xontribs
 xontrib-avox-poetry = { path = "./exts/avox-poetry", develop = true }
@@ -31,6 +33,9 @@ xontrib-django = {path = "./exts/django", develop=true}
 #xontrib-back2dir = "*"
 xontrib-argcomplete = {git = "https://github.com/jnoortheen/xontrib-argcomplete", branch="master"}
 xontrib-jedi = {git = "https://github.com/xonsh/xontrib-jedi", branch="main"}
+xontrib-abbrevs = {git = "https://github.com/xonsh/xontrib-abbrevs"}
+xontrib-vox = {git = "https://github.com/xonsh/xontrib-vox"}
+xontrib-fish-completer = {git = "https://github.com/xonsh/xontrib-fish-completer"}
 
 # functional libraries
 funcy = "*"
