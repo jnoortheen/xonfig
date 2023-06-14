@@ -1,8 +1,8 @@
-import asyncio
-import uvloop
-
-# the output gets cut -- example 'ls' -- but it doesn't feel sluggish like that of with default ptk
-asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
+# import asyncio
+# import uvloop
+#
+# # the output gets cut -- example 'ls' -- but it doesn't feel sluggish like that of with default ptk
+# asyncio.set_event_loop_policy(uvloop.EventLoopPolicy())
 
 import io
 import sys
