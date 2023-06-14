@@ -66,6 +66,7 @@ arger = "*"
 keyring = "*"
 #nuclear = "^1.1.10"
 #pyobjc = "^8.0"
+uvloop = "^0.17.0"
 
 [tool.poetry.group.dev.dependencies]
 # tooling
