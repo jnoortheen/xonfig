@@ -41,7 +41,6 @@ def exec_module(path: Path):
 
 def update_xonsh_dict(path: Path, var):
     module = exec_module(path)
-    special = {}
     try:
         if callable(var):
             var = var()
@@ -49,8 +48,6 @@ def update_xonsh_dict(path: Path, var):
         for key, val in vars(module).items():  # type: str, tp.Any
             if key.startswith("__"):
                 continue
-            if key.startswith("_") and key.endswith("_"):
-                special[key] = val
             else:
                 if isinstance(var, Aliases) and isinstance(val, str):
                     # list is faster than string as alias
@@ -65,8 +62,6 @@ def update_xonsh_dict(path: Path, var):
 
         c = console.Console()
         c.print_exception(show_locals=True)
-
-    return special
 
 
 class Loader:
@@ -107,9 +102,7 @@ class Loader:
             ("abbrevs.py", XSH.builtins.abbrevs),
             ("aliases.py", XSH.aliases),
         ):
-            ext_vars = update_xonsh_dict(file / x, var)
-            if ext_vars:
-                self.update_modules(ext_vars)
+            update_xonsh_dict(file / x, var)
 
     def get_functions(self):
         yield functools.partial(self.load_config_files, file=self.root)
@@ -141,7 +134,3 @@ class Loader:
         exc = cf.ThreadPoolExecutor(max_workers=2)
         futures = [exc.submit(fn) for fn in self.get_functions()]
         return lambda: list(cf.as_completed(futures))
-
-    def update_modules(self, ext_vars: "dict[str, ...]"):
-        if modules := ext_vars.get("_modules_"):
-            self.modules += modules
