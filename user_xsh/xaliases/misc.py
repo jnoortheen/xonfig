@@ -62,7 +62,7 @@ def _start_cola():
 
 @Command.reg_no_thread
 @trace_
-def release_sof(version="patch"):
+def release_poetry_sof(version="patch"):
     """
         Release a new version for poetry based projects
     Parameters
@@ -82,3 +82,28 @@ def release_sof(version="patch"):
     R("git", "push")
     R("git", "push", "--tags")
     R("poetry", "publish", "--build")
+
+
+@Command.reg_no_thread
+@trace_
+def release_pdm_sof(version="patch"):
+    """
+        Release a new version for poetry based projects
+    Parameters
+    ----------
+    version
+        type of the new version. could be one of patch/minor/major...
+    """
+    if version == "patch":
+        version = "micro"
+    msg = R("pdm", "bump", version)
+    version = R("pdm", "show", "--version").strip()
+    ans = input(f"Upload version {version} ? [Y/n]")
+    if ans and ans.lower()[0] in {"n"}:
+        return
+
+    R("git", "commit", "-a", "-m", msg)
+    R("git", "tag", f"v{version}")
+    R("git", "push")
+    R("git", "push", "--tags")
+    R("pdm", "publish", "--build")
