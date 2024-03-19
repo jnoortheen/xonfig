@@ -106,4 +106,4 @@ def release_pdm_sof(version="patch"):
     R("git", "tag", f"v{version}")
     R("git", "push")
     R("git", "push", "--tags")
-    R("pdm", "publish", "--build")
+    R("pdm", "publish")
