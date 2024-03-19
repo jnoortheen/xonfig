@@ -1,9 +1,8 @@
 """integration better-exceptions with Xonsh"""
 
-import threading
-
 import better_exceptions
-import xonsh.tools as xt
+
+from user_xsh.tb_hooks.commonlib import start_patching
 
 better_exceptions.hook()
 
@@ -24,5 +23,4 @@ def print_exc(msg=None, **_):
         sys.stderr.flush()
 
 
-threading.excepthook = thread_excepthook
-xt.print_exception = print_exc
+start_patching(print_exc, thread_excepthook)

@@ -80,7 +80,8 @@ def _load():
             "user_xsh.xaliases.cleanup",
             "user_xsh.xaliases.misc",
             "user_xsh.key_bindings.bindings",
-            "user_xsh.tb_hooks.hook_better_exceptions",
+            # "user_xsh.tb_hooks.hook_better_exceptions",
+            "user_xsh.tb_hooks.rich_exceptions",
             # "user_xsh.history.completer",
         ),
     ).normal()

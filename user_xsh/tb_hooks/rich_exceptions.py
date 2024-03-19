@@ -1,6 +1,6 @@
-import threading
-import xonsh.tools as xt
 from rich import traceback, console
+
+from user_xsh.tb_hooks.commonlib import start_patching
 
 traceback.install(show_locals=True)
 
@@ -41,5 +41,4 @@ def print_exc(msg=None, **_):
     print_err_msg(msg)
 
 
-threading.excepthook = thread_excepthook
-xt.print_exception = print_exc
+start_patching(print_exc, thread_excepthook)
