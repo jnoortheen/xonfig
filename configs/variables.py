@@ -117,8 +117,7 @@ fzf_dir_binding = "c-g"  # Ctrl+G
 
 # If we disable it, then tab-completer prints things on prompt
 # it enabled: on-cd writes to stdout suffers
-# THREAD_SUBPROCS = False
-
+THREAD_SUBPROCS = False
 
 BASH_COMPLETIONS = ["/opt/homebrew/Cellar/bash-completion/1.3_3/etc/bash_completion"]
 
