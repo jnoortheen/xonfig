@@ -1,3 +1,5 @@
+import os.path
+
 from user_xsh.bakery import current_folder_name, trace_
 from xonsh.built_ins import XSH
 from xontrib_commands.argerize import Command
@@ -94,8 +96,6 @@ def release_pdm_sof(version="patch"):
     version
         type of the new version. could be one of patch/minor/major...
     """
-    if version == "patch":
-        version = "micro"
     msg = R("pdm", "bump", version)
     version = R("pdm", "show", "--version").strip()
     ans = input(f"Upload version {version} ? [Y/n]")
@@ -106,4 +106,6 @@ def release_pdm_sof(version="patch"):
     R("git", "tag", f"v{version}")
     R("git", "push")
     R("git", "push", "--tags")
-    R("pdm", "publish")
+
+    if not os.path.exists(".github"):
+        R("pdm", "publish")
