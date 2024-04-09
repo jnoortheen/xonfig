@@ -10,10 +10,10 @@ license = "GPL v3"
 readme = "readme.md"
 
 [tool.poetry.dependencies]
-python = ">=3.11,<4.0"
+python = ">3.11,<4.0"
 
-#xonsh = {git = "https://github.com/xonsh/xonsh"}
-xonsh = { path = "../xsh", develop = true }
+xonsh = {git = "https://github.com/xonsh/xonsh"}
+#xonsh = { path = "../xsh", develop = true }
 
 
 # local xontribs
@@ -66,7 +66,7 @@ arger = "*"
 keyring = "*"
 #nuclear = "^1.1.10"
 #pyobjc = "^8.0"
-uvloop = "^0.17.0"
+#uvloop = "^0.17.0"
 
 [tool.poetry.group.dev.dependencies]
 # tooling
@@ -88,21 +88,6 @@ icecream = "*"
 pytest = "*"
 pytest-cov = "*"
 pytest-timeout = "*"
-
-[tool.poetry.group.linter]
-optional = false
-
-[tool.poetry.group.linter.dependencies]
-# linters
-flake8 = "*"
-mypy_extensions = "*"
-mypy = "*"
-
-# formatters
-black = "*"
-isort = "*"
-
-#asciimatics = "^1.12.0"
 
 [tool.poetry.group.profile]
 optional = true
