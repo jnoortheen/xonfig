@@ -37,16 +37,17 @@ PROMPT = "".join(
         "{gitstatus:{}}",
         "{ret_code}",
         "{background_jobs}",
+        "{long_cmd_duration:⌛{}}",
         os.linesep,
         "{prompt_end}",
     ]
 )
 RIGHT_PROMPT = "".join(
     (
-        "{long_cmd_duration:⌛{}}",
+        # "{long_cmd_duration:⌛{}}",
         "{full_env_name:🐍{}}",
         # "{user_at_host}",
-        "{localtime:{}}",
+        # "{localtime:{}}",
         # "{iterm2_end}",
     )
 )

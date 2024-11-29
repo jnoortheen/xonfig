@@ -9,7 +9,7 @@ mem = "smem -ktP"
 
 # bat = "bat --terminal-width -5"
 # less = 'bat --paging=always --pager "less -RF"'
-ls = "exa"
+# ls = "exa"
 diff = "colordiff"
 tmux = "tmux -2"  # Force 256 colors
 jq = "jq -C"  # Force colors
