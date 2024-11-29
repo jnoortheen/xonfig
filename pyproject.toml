@@ -1,108 +1,120 @@
-[tool.poetry]
+[tool.uv]
+default-groups = ["dev", "test", "local-xontribs", "xontribs"]
+
+[tool.uv.workspace]
+members = ["exts/*"]
+exclude = ["exts/fzf-widgets"]
+
+[tool.uv.sources]
+bird-feeder = { workspace = true }
+xontrib-avox-poetry = { workspace = true }
+xontrib-hist-navigator = { workspace = true }
+xontrib-cmd-durations = { workspace = true }
+xontrib-commands = { workspace = true }
+xontrib-powerline3 = { workspace = true }
+xontrib-broot = { workspace = true }
+xontrib-term-integrations = { workspace = true }
+xontrib-django = { workspace = true }
+
+[dependency-groups]
+xontribs = [
+    # 3rd party
+    # xontrib-output-search = "^0.5"
+    #xontrib-kitty = "^0.0.2"
+    #xontrib-back2dir = "*"
+    #xontrib-argcomplete = {git = "https://github.com/jnoortheen/xontrib-argcomplete", branch="master"}
+    "xontrib-jedi @ git+https://github.com/xonsh/xontrib-jedi@main",
+    "xontrib-abbrevs @ git+https://github.com/xonsh/xontrib-abbrevs",
+    "xontrib-vox @ git+https://github.com/xonsh/xontrib-vox",
+    "xontrib-fish-completer @ git+https://github.com/xonsh/xontrib-fish-completer",
+]
+local-xontribs = [
+    "xontrib-avox-poetry",
+    "xontrib-hist-navigator",
+    "xontrib-cmd-durations",
+    "xontrib-commands",
+    "xontrib-powerline3",
+    "xontrib-broot",
+    "xontrib-fzf-widgets @ file:///${PROJECT_ROOT}/exts/fzf-widgets",
+    "xontrib-term-integrations",
+    "xontrib-django",
+]
+dev = [
+    # tooling
+    #pyinotify = "*"
+    #limeade = "^0.1.1"
+    #fixit = "^0.1.0"
+    #uvloop = "^0.16.0"
+    # debug
+    "ipython",
+    "watchdog",
+]
+debug = [
+    #ipdb = "*"
+    "pdbpp",
+    "icecream",
+]
+test = [
+    "pytest",
+    "pytest-cov",
+    "pytest-timeout",
+]
+profile = [
+    "memory-profiler<1.0.0,>=0.58.0",
+    "scalene<2.0.0,>=1.1.12",
+    "tuna<1.0.0,>=0.5.2",
+    "snakeviz<3.0.0,>=2.1.0",
+    "pprofile<3.0.0,>=2.0.5",
+    "pyprof2calltree<2.0.0,>=1.4.5",
+    "sarge<1.0.0,>=0.1.6",
+    "yappi<2.0.0,>=1.3.3",
+    "pyinstrument<5.0.0,>=4.1.1",
+]
+
+[tool.pdm.build]
+includes = [
+    "user_xsh",
+]
+
+[project]
+authors = [
+    { name = "Noortheen Raja", email = "jnoortheen@gmail.com" },
+]
+license = { text = "GPL v3" }
+requires-python = "<4.0,>3.11"
+dependencies = [
+    #xonsh = { path = "../xsh", develop = true }
+    "xonsh @ git+https://github.com/xonsh/xonsh",
+    "funcy",
+    "pipe @ git+https://github.com/jnoortheen/pipe",
+    "lambdax @ git+https://github.com/erezsh/lambdaX",
+    "phi",
+    "better-exceptions",
+    # subprocess alts
+    #plumbum = "*"
+    "sh",
+    "psutil",
+    "loguru",
+    "rich",
+    "pyperclip",
+    "pygments",
+    "prompt-toolkit",
+    "arger",
+    "keyring",
+    # dbus-python = "^1.2.16"
+    #distro = "^1.5.0"
+
+    #marcel = "^0.11.9"
+    #stringcase = "^1.2.0"
+    #nuclear = "^1.1.10"
+    #pyobjc = "^8.0"
+    #uvloop = "^0.17.0"
+]
 name = "xonfig"
 version = "0.2.0"
 description = "Xonsh configuration"
-authors = ["Noortheen Raja <jnoortheen@gmail.com>"]
-packages = [
-    { include = "user_xsh" },
-]
-license = "GPL v3"
 readme = "readme.md"
 
-[tool.poetry.dependencies]
-python = ">3.11,<4.0"
-
-xonsh = {git = "https://github.com/xonsh/xonsh"}
-#xonsh = { path = "../xsh", develop = true }
-
-
-# local xontribs
-xontrib-avox-poetry = { path = "./exts/avox-poetry", develop = true }
-xontrib-hist-navigator = { path = "./exts/hist-navigator", develop = true }
-xontrib-cmd-durations = { path = "./exts/done", develop = true }
-xontrib-commands = { path = "./exts/commands", develop = true }
-xontrib-powerline3 = { path = "./exts/powerline", develop = true }
-xontrib-broot = { path = "./exts/broot", develop = true }
-xontrib-fzf-widgets = { path = "./exts/fzf-widgets", develop = true }
-xontrib-term-integrations = {path = "./exts/term", develop=true}
-xontrib-django = {path = "./exts/django", develop=true}
-
-# 3rd party
-# xontrib-output-search = "^0.5"
-#xontrib-kitty = "^0.0.2"
-#xontrib-back2dir = "*"
-xontrib-argcomplete = {git = "https://github.com/jnoortheen/xontrib-argcomplete", branch="master"}
-xontrib-jedi = {git = "https://github.com/xonsh/xontrib-jedi", branch="main"}
-xontrib-abbrevs = {git = "https://github.com/xonsh/xontrib-abbrevs"}
-xontrib-vox = {git = "https://github.com/xonsh/xontrib-vox"}
-xontrib-fish-completer = {git = "https://github.com/xonsh/xontrib-fish-completer"}
-
-# functional libraries
-funcy = "*"
-pipe = { git = "https://github.com/jnoortheen/pipe" }
-lambdax = { git = "https://github.com/erezsh/lambdaX" }
-phi = "*"
-better_exceptions = "*"
-
-# subprocess alts
-sh = "*"
-#plumbum = "*"
-
-# dbus-python = "^1.2.16"
-#distro = "^1.5.0"
-psutil = "*"
-
-#logging
-loguru = "*"
-rich = "*"
-
-pyperclip = "*"
-pygments = "*"
-
-#marcel = "^0.11.9"
-prompt-toolkit = "*"
-arger = "*"
-#stringcase = "^1.2.0"
-keyring = "*"
-#nuclear = "^1.1.10"
-#pyobjc = "^8.0"
-#uvloop = "^0.17.0"
-
-[tool.poetry.group.dev.dependencies]
-# tooling
-#pyinotify = "*"
-#limeade = "^0.1.1"
-ipython = "*"
-#fixit = "^0.1.0"
-watchdog = "*"
-#uvloop = "^0.16.0"
-
-
-# debug
-#ipdb = "*"
-pdbpp = "*"
-icecream = "*"
-
-[tool.poetry.group.test.dependencies]
-# test
-pytest = "*"
-pytest-cov = "*"
-pytest-timeout = "*"
-
-[tool.poetry.group.profile]
-optional = true
-
-[tool.poetry.group.profile.dependencies]
-# memory profilers
-#guppy3 = "^3.1.0"
-memory-profiler = "^0.58.0"
-scalene = "^1.1.12"
-#Pympler = "*"
-#PySide2 = {version = "*", python = ">=3.6.1,<3.10"}
-tuna = "^0.5.2"
-snakeviz = "^2.1.0"
-pprofile = "^2.0.5"
-pyprof2calltree = "^1.4.5"
-sarge = "^0.1.6"
-yappi = "^1.3.3"
-pyinstrument = "^4.1.1"
+[build-system]
+requires = ["pdm-backend"]
+build-backend = "pdm.backend"
